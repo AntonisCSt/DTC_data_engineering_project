@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: staging
+    database: my-rides-antonis
+    schema: youtube_playlist
+
+    tables:
+      - name: "youtube_playlist_Data Engineering Zoomcamp 2023_info"
+      - name: "youtube_playlist_MLOps Zoomcamp 2022_info"
+      - name: "youtube_playlist_Machine Learning Zoomcamp 2022_info"
