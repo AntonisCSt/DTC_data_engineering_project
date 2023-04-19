@@ -6,25 +6,26 @@ from prefect import flow,task
 from prefect_gcp.cloud_storage import GcsBucket
 
 @task(log_prints=True,retries=3)
-def fetch() -> pd.DataFrame:
+def fetch(playlist_id:str) -> pd.DataFrame:
     """Read youtube data from web into pandas DataFrame"""
 
     #run youtube_watcher and get the dataframe
-    df = youtube_watcher()
+    df,playlist_name = youtube_watcher(playlist_id)
     
-    return df
+    return df,playlist_name
 
 @task(log_prints=True,retries=3)
-def clean(df: pd.DataFrame) -> pd.DataFrame:
+def clean_and_edit(df: pd.DataFrame,playlist_name:str) -> pd.DataFrame:
     """fix dtype issues"""
 
     df['publishedAt']  = pd.to_datetime(df['publishedAt'])
     df['channelTitle'] = df['channelTitle'].astype(str)
+    df['playlist_name'] = playlist_name
 
     print(df.head(2))
     print(f"columns: {df.dtypes}")
     print(f"number of rows: {len(df)}")
-
+    print(playlist_name)
     return df
 
 @task(log_prints=True)
@@ -45,16 +46,23 @@ def write_gcs(path: Path) -> None:
     )
     return
 
-
-@flow(name=" ETL-TO-GCS-BUCKET")
-def etl_web_to_gcs() -> None:
+@flow(name="ETL-TO-GCS-BUCKET")
+def etl_web_to_gcs(playlist_id:str) -> None:
     """the main ETL function"""
 
-
-    df = fetch()
-    df_clean = clean(df)
-    dataset_file = 'DTC_DataEngineering_playlist_snapshot'
+    df,playlist_name = fetch(playlist_id)
+    df_clean = clean_and_edit(df,playlist_name)
+    dataset_file = f'DTC_{playlist_name}_playlist_snapshot'
     path = write_local(df_clean,dataset_file)
     write_gcs(path)
+
+@flow(name="Parent_ETL-TO-GCS-BUCKET")
+def etl_parent_web_to_gcs(playlist_id_list:list[str]) -> None:
+    """the proud parent of ETL function"""
+
+    for playlist_id in playlist_id_list:
+        etl_web_to_gcs(playlist_id)
+
 if __name__ == '__main__':
-    etl_web_to_gcs()
+    playlist_id_list = ["PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb","PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR","PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK"]
+    etl_parent_web_to_gcs(playlist_id_list)

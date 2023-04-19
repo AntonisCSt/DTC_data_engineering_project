@@ -1,0 +1,44 @@
+###
+### A complete description of a Prefect Deployment for flow 'Parent_ETL-TO-GCS-BUCKET'
+###
+name: parameterized ETL gcs to bucket
+description: the proud parent of ETL function
+version: 6d9abe92bc8645d9a725e599f21bdf59
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {"playlist_id_list":["PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb","PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR","PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK"]}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: Parent_ETL-TO-GCS-BUCKET
+manifest_path: null
+storage: null
+path: /home/antonis_hotmail/DTC_data_engineering_project/Batch_processing
+entrypoint: etl_web_to_gcs.py:etl_parent_web_to_gcs
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    playlist_id_list:
+      title: playlist_id_list
+      position: 0
+      type: array
+      items:
+        type: string
+  required:
+  - playlist_id_list
+  definitions: null

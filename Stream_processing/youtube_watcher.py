@@ -108,7 +108,7 @@ def summarize_videos_stats(details_dict:dict)-> dict:
 def on_delivery(err,record):
     pass
 
-def main():
+def main(playlist_id:str):
     logging.info("START")
     schema_registry_client = SchemaRegistryClient(config["schema_registry"])
     youtube_videos_value_schema = schema_registry_client.get_latest_version("youtube_dtc_playlist_stats-value")
@@ -124,7 +124,8 @@ def main():
     producer = SerializingProducer(kafka_config)
 
     google_api_key = config["google_api_key"]
-    youtube_playlist_id = config["youtube_playlist_id"]
+    youtube_playlist_id = playlist_id
+    #config["youtube_playlist_id"]
 
 
     #initiate video's stats dictionary:
@@ -133,13 +134,14 @@ def main():
 
 
     playlist_name = playlist_first_page["items"][0]["snippet"]["title"]
-
+    logging.info("GOT %s", playlist_name)
     #start looping in each video of playlist
+    logging.info('generating data...')
     for video_item in fetch_playlist_items(google_api_key,youtube_playlist_id):
         video_id = video_item["contentDetails"]["videoId"]
 
         for video in fetch_videos(google_api_key, video_id):
-            logging.info("GOT %s", video_id)
+            logging.debug("GOT %s", video_id)
 
             dict_videos[video_id] = summarize_video(video)
             
@@ -165,7 +167,8 @@ def main():
 
 if __name__== "__main__":
     while True:
-        logging.basicConfig(level=logging.INFO)
-        main()
-        time.sleep(30)
+        for playlist_id in ["PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb","PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR","PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK"]:
+            logging.basicConfig(level=logging.INFO)
+            main(playlist_id)
+        time.sleep(120)
     #sys.exit(main())

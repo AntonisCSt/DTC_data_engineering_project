@@ -12,9 +12,9 @@ Thanks to @Kris Jenkins for this amazing tutorial: https://www.youtube.com/watch
 3.1) Requirements
 
 
-To run this script you will have to use your own:
-
-"google_api_key": "[Your google API]",
+To run this script you will have to use your own config.py:
+```python
+config = {"google_api_key": "[Your google API]",
     "youtube_playlist_id": "PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb",
     "kafka":{
             "bootstrap.servers":"[Your kafka-bootstrap-server]",
@@ -30,11 +30,14 @@ To run this script you will have to use your own:
         "url": "[Your registery url]",
         "basic.auth.user.info": "[registery username]/[registery secret]",
     }
-	
-	
-	
-3.2) Queries for KSQL
+```	
+3.2) Set-up
+	# kafka instalation
 
-3.3) Steps to take
+`pip install confluent_kafka==2.1.0`
+`pip install fastavro==1.7.3`
+3.3) Queries for KSQL
+
+3.4) Steps to take
 
 4) Dashboard

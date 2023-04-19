@@ -1,0 +1,44 @@
+###
+### A complete description of a Prefect Deployment for flow 'Parent-ETL-TO-BIG-QUERY'
+###
+name: parameterized ETL bucket to bigquery
+description: Parent of ETL flow to load data into Big Query
+version: ffae77c6ca161b29ec86fc0230d5bc07
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+tags: []
+parameters: {"playlist_name_list":['Data Engineering Zoomcamp 2023','Machine Learning Zoomcamp 2022','MLOps Zoomcamp 2022']}
+schedule: null
+infra_overrides: {}
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  block_type_slug: process
+  _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: Parent-ETL-TO-BIG-QUERY
+manifest_path: null
+storage: null
+path: /home/antonis_hotmail/DTC_data_engineering_project/Batch_processing
+entrypoint: etl_gcs_to_bq.py:etl_parent_gcs_to_bq
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    playlist_name_list:
+      title: playlist_name_list
+      position: 0
+      type: array
+      items:
+        type: string
+  required:
+  - playlist_name_list
+  definitions: null

@@ -97,12 +97,13 @@ def get_video_info_list(video:dict)-> dict:
 def on_delivery(err,record):
     pass
 
-def main():
+def main(youtube_playlist_id):
     logging.info("START")
 
     google_api_key = config["google_api_key"]
-    youtube_playlist_id = config["youtube_playlist_id"]
 
+    playlist_first_page = fetch_playlist_items_page(google_api_key,youtube_playlist_id, page_token=None)
+    playlist_name = playlist_first_page["items"][0]["snippet"]["title"]
 
     #initiate video's stats dictionary:
     data_videos = []
@@ -118,14 +119,18 @@ def main():
             data_videos.append(video_row)
     
     # create the dataframe from the data list and add column names
-    df = pd.DataFrame(data_videos, columns=['playlist_name','videoid','playlist_possition', 'commentCount', 'favoriteCount', 'likeCount', 'viewCount', 'publishedAt', 'channelTitle','description'])
+    df = pd.DataFrame(data_videos, columns=['video_name','videoid','playlist_possition', 'commentCount', 'favoriteCount', 'likeCount', 'viewCount', 'publishedAt', 'channelTitle','description'])
 
     logging.info("GOT %s", df.head())
-    return df
+    return df,playlist_name
     #sent messages to kafka
     
 
 if __name__== "__main__":
     logging.basicConfig(level=logging.INFO)
-    df = main()  
+    #PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb is the playlist id of DTC data engneering course
+
+    youtube_playlist_id = 'PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb'
+    df,playlist_name = main(youtube_playlist_id)
+    print(playlist_name)
     #sys.exit(main())

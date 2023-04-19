@@ -14,4 +14,11 @@
 * documentation
 
 
-* Possition fix
+* Possition column fix from youtube API
+* Playlist name in gcs to bq flow make it not manual
+
+
+### DBT: TODO
+
+* add tests and documentation in dbt schema staging model
+* add a scheduler and CI
