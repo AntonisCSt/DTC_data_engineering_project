@@ -170,5 +170,5 @@ if __name__== "__main__":
         for playlist_id in ["PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb","PL3MmuxUbc_hIhxl5Ji8t4O6lPAOpHaCLR","PL3MmuxUbc_hIUISrluw_A7wDSmfOhErJK"]:
             logging.basicConfig(level=logging.INFO)
             main(playlist_id)
-        time.sleep(120)
+        time.sleep(60)
     #sys.exit(main())
