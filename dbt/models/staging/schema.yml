@@ -1,0 +1,133 @@
+version: 2
+
+sources:
+  - name: staging
+    database: my-rides-antonis
+    schema: youtube_playlist
+
+    tables:
+      - name: "youtube_playlist_Data Engineering Zoomcamp 2023_info"
+      - name: "youtube_playlist_MLOps Zoomcamp 2022_info"
+      - name: "youtube_playlist_Machine Learning Zoomcamp 2022_info"
+
+models:
+    - name: stg_data_eng
+      description: >
+        stage data from the playlist course of data engineering zoomcamp. This data was aquired from the YoutubeAPI.
+        It contains information for the batch process of the project regarding daily information for the statistics.
+        Information such as daily views,likes and coments for each video and in total for each playlist.
+        Each row describes information per video.
+      columns:
+          - name: video_name
+            description: Name of the video for the specific playlist
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: videoid
+            description: id of the video from youtubeAPI for the specific playlist
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: playlist_possition 
+            description: Possition of the video in the playlist (currently only 0 needs a fix)
+          - name: commentCount 
+            description: Number of comments for the specific video in the playlist
+          - name: favoriteCount 
+            description: Number of favourites for the specific video in the playlist
+          - name: likeCount 
+            description: Number of likes for the specific video in the playlist
+          - name: viewCount
+            description: Number of views for the specific video in the playlist
+          - name: publishedAt
+            description: Publishing Timestamp of the video in the playlist.
+          - name: channelTitle
+            description: The name of the channel that hosts the video and the playlist.
+          - name: description
+            description: The description of that is given in the video 
+          - name: playlist_name
+            description: the playlist name that hosts the video
+
+
+    - name: stg_machine_lrn
+      description: >
+        stage data from the playlist course of Machine learning zoomcamp. This data was aquired from the YoutubeAPI.
+        It contains information for the batch process of the project regarding daily information for the statistics.
+        Information such as daily views,likes and coments for each video and in total for each playlist.
+        Each row describes information per video.
+      columns:
+          - name: video_name
+            description: Name of the video for the specific playlist
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: videoid
+            description: id of the video from youtubeAPI for the specific playlist
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: playlist_possition 
+            description: Possition of the video in the playlist (currently only 0 needs a fix)
+          - name: commentCount 
+            description: Number of comments for the specific video in the playlist
+          - name: favoriteCount 
+            description: Number of favourites for the specific video in the playlist
+          - name: likeCount 
+            description: Number of likes for the specific video in the playlist
+          - name: viewCount
+            description: Number of views for the specific video in the playlist
+          - name: publishedAt
+            description: Publishing Timestamp of the video in the playlist.
+          - name: channelTitle
+            description: The name of the channel that hosts the video and the playlist.
+          - name: description
+            description: The description of that is given in the video 
+          - name: playlist_name
+            description: the playlist name that hosts the video
+    
+    - name: stg_ml_ops
+      description: >
+        stage data from the playlist course of MLops learning zoomcamp. This data was aquired from the YoutubeAPI.
+        It contains information for the batch process of the project regarding daily information for the statistics.
+        Information such as daily views,likes and coments for each video and in total for each playlist.
+        Each row describes information per video.
+      columns:
+          - name: video_name
+            description: Name of the video for the specific playlist
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: videoid
+            description: id of the video from youtubeAPI for the specific playlist
+            tests:
+                - unique:
+                    severity: warn
+                - not_null:
+                    severity: warn
+          - name: playlist_possition 
+            description: Possition of the video in the playlist (currently only 0 needs a fix)
+          - name: commentCount 
+            description: Number of comments for the specific video in the playlist
+          - name: favoriteCount 
+            description: Number of favourites for the specific video in the playlist
+          - name: likeCount 
+            description: Number of likes for the specific video in the playlist
+          - name: viewCount
+            description: Number of views for the specific video in the playlist
+          - name: publishedAt
+            description: Publishing Timestamp of the video in the playlist.
+          - name: channelTitle
+            description: The name of the channel that hosts the video and the playlist.
+          - name: description
+            description: The description of that is given in the video 
+          - name: playlist_name
+            description: the playlist name that hosts the video
