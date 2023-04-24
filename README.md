@@ -29,7 +29,7 @@ To run the project, you will need:
 
 See the next section for more details.
 
-### Instalation and set-up
+## Instalation and set-up
 
 ### Python:
 
@@ -83,9 +83,9 @@ A full tutorial to fill the config file is in: [How to fill config for stream](h
 
 You will have to create a confulent kafka account https://confluent.cloud/login . There you will need to create a new enviroment and set up a connector with bigquery. [Setting up bigquery connector in kafka confluent](https://docs.confluent.io/cloud/current/connectors/cc-gcp-bigquery-sink.html#gcp-credentials)
 
-### Running the pipeline
+## Running the pipeline
 
-#### Terraform (In case storage and bigquery are not activated)
+### Terraform (In case storage and bigquery are not activated)
 ```bash
 cd terraform/
 terraform init #optional if you have already ran it.
@@ -93,7 +93,7 @@ terraform plan #optional if you have already ran it.
 terraform apply
 ```
 
-#### Batch pipeline
+### Batch pipeline
 
 Assuming you set-up your python environment and satisfied the requirements in Installation and set-up section. You can run the Batch process manually or create a scheduled run with prefect deployment.
 
@@ -115,7 +115,7 @@ dbt run
 * Scheduled:
 Otherwise you can also set up a daily scheduler in dbt by a deployment environment to run the commands above. [Tutorial: DBT project deloyment](https://www.youtube.com/watch?v=rjf6yZNGX8I&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=37)
 
-#### Stream pipeline
+### Stream pipeline
 Assuming you set-up your python environment and satisfied the requirements in Installation and set-up section regarding Kafka account, credentials and biquery.
 
 ```bash
