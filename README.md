@@ -3,6 +3,8 @@
 ## DataTalksClub Data Engineering Course 2023
 
 ## About the project
+Link to the dashboard: https://lookerstudio.google.com/s/mRI3MW97ePw
+(note that I may have not updated the daily or have up and running the live view for cost reasons :) )
 
 The project’s goal is to show stats regarding YouTube playlists. Specifically, we choose the playlist of DataTalksClub courses. 
 We show daily information through a Batch pipeline and live changes in a Stream pipeline. 
@@ -125,8 +127,9 @@ python youtube_watcher.py
 
 
 ### Improvements
+Where do I even begin..
 
-* Position column fix from youtube API
-* Save playlist ids in a config
-* Playlist names create a folder automatically
+* Position column fix from youtube API (right now the video position column is one value that needs to be corrected)
+* Save playlist ids in a config. (right now the id of the playlists are stored in the .py files, so if you want to add your own id you have to edit the scripts)
+* Dashboard live view graph improvements. (The most important update will be the live view for each minute)
 
