@@ -9,5 +9,5 @@ pandas-gbq==0.18.1
 psycopg2-binary==2.9.5
 sqlalchemy==1.4.46
 fastavro==1.7.3
-confluent-kafka==2.1.0
 Pillow==9.2.0
+confluent-kafka==2.1.0
