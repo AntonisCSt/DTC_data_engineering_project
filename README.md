@@ -3,7 +3,7 @@
 ## DataTalksClub Data Engineering Course 2023
 
 ## About the project
-Link to the dashboard: https://lookerstudio.google.com/s/mRI3MW97ePw
+Link to the dashboard: [https://lookerstudio.google.com/s/mRI3MW97ePw](https://lookerstudio.google.com/reporting/70d1b440-2c5c-4c88-a4cb-add7e7060749)
 (note that I may have not updated the daily or have up and running the live view for cost reasons :) )
 
 The project’s goal is to show stats regarding YouTube playlists. Specifically, we choose the playlist of DataTalksClub courses. 
