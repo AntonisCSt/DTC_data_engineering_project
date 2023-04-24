@@ -1,0 +1,13 @@
+pandas==1.5.2
+prefect==2.7.7
+google-cloud-storage
+prefect-sqlalchemy==0.2.2
+prefect-gcp[cloud_storage]==0.2.4
+protobuf==4.21.11
+pyarrow==10.0.1
+pandas-gbq==0.18.1
+psycopg2-binary==2.9.5
+sqlalchemy==1.4.46
+fastavro==1.7.3
+confluent-kafka==2.1.0
+Pillow==9.2.0
